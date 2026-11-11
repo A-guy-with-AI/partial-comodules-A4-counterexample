@@ -1,0 +1,321 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdfauthor={A-guy-with-AI},pdftitle={Twisted group algebras and simple partial comodules of finite group algebras: a counterexample and a classification}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{example}[lemma]{Example}
+\newtheorem*{corA}{Corollary A.1}
+\newcommand{\paralg}{H_{\mathrm{par}}}
+\newcommand{\Apar}{A_{\mathrm{par}}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\DeclareMathOperator{\Mat}{Mat}
+\title[Twisted group algebras and partial comodules]{Twisted group algebras and simple partial comodules of finite group algebras: a counterexample and a classification}
+\author{A-guy-with-AI}
+\subjclass[2020]{16T05, 16T15, 20C25}
+\keywords{Partial comodule, partial representation, twisted group algebra}
+\begin{document}
+\begin{abstract}
+We classify the finite-dimensional simple partial comodules of a finite group algebra over an algebraically closed field. The parameters are a coset, a group-cohomology class and a character orbit of central idempotents in a twisted group algebra. Nontrivial cohomology classes yield counterexamples to a conjecture of Batista, Hautekiet, Saracco and Vercruysse. The smallest example exhibited here is $A_4$, with simple partial comodules of dimensions $4$ and $8$. When the characteristic is prime to the group order, a dimension bound from the partial smash product gives a matrix-block decomposition of the universal partial representation algebra of the dual Hopf algebra.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+Batista, Hautekiet, Saracco and Vercruysse \cite[Conjecture~B]{BHSV} ask whether the finite-dimensional simple partial comodules of a Hopf algebra arise from their Construction~2.6. The question over an algebraically closed field appears as Conjecture~4.1.18 in Hautekiet's thesis \cite{H}. We show that the construction gives precisely the untwisted part of the classification for finite group algebras. For $A_4$, the binary tetrahedral cover supplies a nontrivial twist and two simple partial comodules missing from the construction.
+
+A second question concerns the universal algebra $\paralg$ for partial representations of a Hopf algebra $H$. Alves, Batista and Vercruysse \cite[Conjecture~2.8]{ABV19} conjecture that this algebra is finite-dimensional and semisimple when $H$ is finite-dimensional and semisimple. We prove this for $H=k^G$ in characteristic prime to $|G|$. For context, the partial group algebra for $H=kG$ has a groupoid description and a matrix decomposition over subgroup algebras \cite{DEP}. Our objects are the partial representations of the dual $k^G$, or equivalently partial comodules of $kG$.
+
+\section{Preliminaries and compression}
+Let $G$ be finite and let $p_x$ denote the indicator function at $x\in G$ in $H=k^G$. We use $p_xp_y=\delta_{x,y}p_x$, $\Delta(p_x)=\sum_{ab=x}p_a\otimes p_b$, and $S(p_x)=p_{x^{-1}}$. A partial representation is a linear map with $\pi(1)=1$ and the following identities in Sweedler notation, with summation understood:
+\begin{align*}
+\pi(h)\pi(k_1)\pi(Sk_2)&=\pi(hk_1)\pi(Sk_2) &&\text{(PR2)},\\
+\pi(h_1)\pi(Sh_2)\pi(k)&=\pi(h_1)\pi(S(h_2)k) &&\text{(PR3)},\\
+\pi(h)\pi(Sk_1)\pi(k_2)&=\pi(hS(k_1))\pi(k_2) &&\text{(PR4)},\\
+\pi(Sh_1)\pi(h_2)\pi(k)&=\pi(Sh_1)\pi(h_2k) &&\text{(PR5)}.
+\end{align*}
+Here the symbols $h,k$ in the identities denote elements of $H$. These relations and linearity define $\paralg$ universally \cite{ABV15}. Finite-dual evaluation identifies partial $kG$-comodules with partial $k^G$-modules \cite[Theorem~1.6]{BHSV}. We write $M_x=\pi(p_x)$.
+
+Let $W=\bigoplus_{x\in G}W_x$, with coordinate projections $D_x$, and let $P$ be an idempotent on $W$. Set
+\[
+ L_s=\sum_xD_{sx}PD_x,\qquad R_s=\sum_xD_{xs}PD_x.
+\]
+Each family sums to $P$. On $PW$ put $M_x=PD_x|_{PW}$, or $X_x=PD_xP$ on $W$.
+
+\begin{lemma}[Compression criterion]\label{compression}
+The $M_x$ satisfy PR1. If $P$ commutes with all $L_s$ and $R_s$, they satisfy PR2--PR5. Conversely, when $P|_{W_x}$ is injective and $D_x(PW)=W_x$ for each $x$, PR2--PR3 imply the $L_s$ commutations and PR4--PR5 imply the $R_s$ commutations.
+\end{lemma}
+\begin{proof}
+PR1 follows from $\sum_x D_x=I$. For inputs $p_h,p_k$, the four relations compare the following operators on $W$:
+\[
+\begin{array}{c@{\quad}l@{\;=\;}l}
+ 2& PD_hPL_kP & PD_hL_kP\\
+ 3& PL_hPD_kP & PL_hD_kP\\
+ 4& PD_hPR_{k^{-1}}P & PD_hR_{k^{-1}}P\\
+ 5& PR_{h^{-1}}PD_kP & PR_{h^{-1}}D_kP .
+\end{array}
+\]
+Indeed, $ab=k$ gives $b^{-1}=k^{-1}a$, so $\sum_{ab=k}D_aPD_{b^{-1}}=L_k$. The right side of PR2 keeps $a=h$, and that of PR3 keeps $b^{-1}=k$ in the sum with $ab=h$. For PR4, $ab=k$ gives $a^{-1}=bk^{-1}$, so $\sum_{ab=k}D_{a^{-1}}PD_b=R_{k^{-1}}$. Its right side is $X_hX_{hk}$, since $a^{-1}=h$. For PR5, the first two factors give $PR_{h^{-1}}P$, and its right side is $X_{kh^{-1}}X_k$, since $b=k$. Commutation with $P$ proves the displayed equalities. Conversely, the equalities in rows 2 and 4 give $PD_h(I-P)L_kP=0$ and $PD_h(I-P)R_{k^{-1}}P=0$ for all $h$. The operators $PD_h$ have common kernel zero by injectivity on each degree. Rows 3 and 5 give $PL_h(I-P)D_kP=0$ and $PR_{h^{-1}}(I-P)D_kP=0$ for all $k$. The images of $D_kP$ span $W$. These are the two off-diagonal vanishing conditions for each commutation.
+\end{proof}
+
+Any family with $\sum_xM_x=I$ has a canonical model of this kind. Take $W_x=\im M_x$ as labelled copies, $J(v)=(M_xv)_x$ and $U$ the sum of the inclusions into the original space. Then $UJ=I$, $P=JU$ and $J$ intertwines the original operators with the compressions. The injectivity and surjectivity in Lemma~\ref{compression} follow from $U|_{W_x}$ being an inclusion and $D_xJ(V)=W_x$. Conversely any model with those two properties is isomorphic to the canonical model via the map on each degree sending $PD_xv$ to $D_xv$ for $v\in PW$. This map intertwines the projectors because $\sum_xD_xv=v$. Also $R_sD_x=D_{xs}R_s$. When $[R_s,P]=0$, this yields $R_sL_t=\sum_xD_{txs}PD_{xs}R_s=L_tR_s$. Summing over $s$ proves $[P,L_t]=0$. Thus PR1, PR4 and PR5 imply the other two relations for $k^G$.
+
+\section{Classification}
+For a normalized cocycle $\alpha:K^2\to k^\times$, write $u_au_b=\alpha(a,b)u_{ab}$ in $k^\alpha K$. Characters $\chi:K\to k^\times$ act on this algebra by $u_a\mapsto\chi(a)u_a$. The support of an element consists of its nonzero homogeneous coefficients.
+
+\renewcommand{\thetheorem}{A}
+\begin{theorem}\label{thmA}
+Over an algebraically closed field $k$ of arbitrary characteristic, the finite-dimensional simple partial $kG$-comodules are parametrized, up to isomorphism, by
+\[
+ (K,\ rK,\ [\alpha],\ [e]),
+\]
+where $K\le G$, $rK$ is a left coset, $[\alpha]\in H^2(K,k^\times)$ and $[e]$ is a character orbit of nonzero central idempotents of $k^\alpha K$ whose support generates $K$. For any representative $\alpha$, the comodule corresponds to the partial module on $k^\alpha K e$ given by $M_{rx}(v)=D_{rx}(v)e$, where $D_{rx}$ takes the $u_x$ component. Operators outside $rK$ are zero. Its dimension is $d(e)=\dim_k k^\alpha K e$.
+\end{theorem}
+
+\begin{proof}
+For existence, grade $W=k^\alpha K$ by $\deg u_x=rx$ and let $P$ be multiplication on the right by $e=\sum_s c_su_s$. Its $R_s$ are right multiplications by $c_su_s$ for $s\in K$ and zero otherwise. Since $e$ is central, $P$ is also left multiplication by $e$, and $L_s$ is left multiplication by $c_{r^{-1}sr}u_{r^{-1}sr}$ when $r^{-1}sr\in K$ and zero otherwise. All commute with $P$. Lemma~\ref{compression} applies.
+
+Write $v_x=u_xe$ and let $\ell_x$ take the $u_x$ coordinate on $PW$. Then $M_{rx}=v_x\ell_x$. Each $v_x$ is nonzero by invertibility of $u_x$. If $c_s\ne0$, the $u_x$ coordinate of $u_{xs^{-1}}e$ is nonzero, so $\ell_x\ne0$. Furthermore $\ell_y(v_x)\ne0$ precisely for $y=xs$ with $s\in\supp(e)$. The directed graph with these arrows is strongly connected because in a finite group the monoid generated by a set equals the subgroup it generates. Along a path $x=x_0,\ldots,x_m=y$, the product $M_{rx_m}\cdots M_{rx_0}$ is $v_y\ell_x$ times the nonzero product of the arrow coefficients. The length-zero product here means the single operator $M_{rx}$. Since $\sum_xv_x\ell_x=I_{PW}$, the $v_x$ span $PW$ and the $\ell_x$ span its dual. Hence the generators span $\End_k(PW)$ as an algebra. This also proves absolute simplicity and verifies the two minimality conditions of Lemma~\ref{compression} for this model.
+
+For exhaustiveness, take the canonical model of a finite-dimensional simple module. A graded $P$-stable subspace $Y$ gives a submodule $P(Y)$ because $D_xP(Y)\subseteq Y$. If $P(Y)=0$, degreewise injectivity gives $Y=0$. If $P(Y)=PW$, then $W_x=D_x(PW)\subseteq Y$ in every degree. Consequently the graded $P$-stable subspaces are $0$ and $W$. The kernel and image of each $R_s$ are graded and $P$-stable, since $R_s$ commutes with $P$ and sends degree $x$ to $xs$. Thus every nonzero $R_s$ is invertible. Let $K$ be generated by the $s$ with $R_s\ne0$. The support of $W$ is a union of $K$-orbits, and the sum of degrees in each orbit is $P$-stable since $P=\sum_sR_s$. The support is therefore one coset $rK$.
+
+A graded automorphism commuting with $P$ induces a module automorphism on $PW$. It acts there by a scalar by Schur's lemma, since $k$ is algebraically closed and the module has finite dimension. It acts by that scalar on $W$ since $W_x=D_x(PW)$ and it commutes with $D_x$. Two invertible operators commuting with $P$ and transporting each degree to the same degree therefore differ by a scalar, by composing one with the inverse of the other.
+
+For $a\in K$, choose a word $a=s_1^{\epsilon_1}\cdots s_m^{\epsilon_m}$ in the generators just defined and their inverses. The operator $T_a=R_{s_m}^{\epsilon_m}\cdots R_{s_1}^{\epsilon_1}$ commutes with $P$ and sends $W_x$ bijectively to $W_{xa}$. Use $T_1=I$. The comparison of transports gives $T_bT_a=\alpha(a,b)T_{ab}$ for a unique nonzero scalar. Associativity gives $\alpha(a,b)\alpha(ab,c)=\alpha(b,c)\alpha(a,bc)$, and $T_1=I$ gives normalization. Replacing $T_a$ by $\beta(a)T_a$ multiplies $\alpha$ by the coboundary $\beta(a)\beta(b)/\beta(ab)$. The isomorphism
+\[
+ k^\alpha K\otimes W_r\longrightarrow W,\qquad u_a\otimes w\longmapsto T_aw
+\]
+is degreewise bijective, and $T_b$ corresponds to right multiplication by $u_b$ on the first factor. Every nonzero $R_s$ equals $c_s T_s$ by comparison of transports. Put $c_s=0$ when $R_s=0$. Hence $P$ corresponds to right multiplication by $e=\sum_s c_su_s$. Right multiplication is faithful on the tensor product, as evaluation at $1\otimes w$ for $w\ne0$ shows. From $P^2=P$ and $[P,T_b]=0$ we obtain $e^2=e$ and centrality. Its support generates $K$ by definition. The compressed operators act on $k^\alpha K e\otimes W_r$ on the first factor alone. Simplicity forces $\dim W_r=1$, since otherwise tensoring with a line in $W_r$ gives a proper submodule.
+
+For uniqueness, an intertwiner of the original modules induces a graded isomorphism of their canonical models by restriction on each image $W_x=\im M_x$. It intertwines $J,U$ and hence $P$, so it conjugates each $R_s$ and transports the $T_a$. Thus the labelled support $rK$, its subgroup $K=r^{-1}(rK)$, and $[\alpha]$ are invariants. In the model of the recipe, the right multiplications by $u_a$ are admissible transports up to scalar, so the reconstructed class is the prescribed class. Changing the basepoint from $r$ to $rk$ is implemented from the new model to the old by left multiplication by $u_k$, which intertwines the projectors. If $\alpha'=\alpha\,\delta\gamma$, the graded isomorphism $u_a\mapsto\gamma(a)^{-1}u'_a$ transports $e$ to the new representative. Two choices of such an isomorphism differ by a character.
+
+With $r$ and $\alpha$ fixed, a graded isomorphism is diagonal, $u_x\mapsto\lambda_xu_x$, and may be normalized by $\lambda_1=1$. Comparing the $xs$ coefficient in the projector intertwining relation gives $\lambda_{xs}c_s=\lambda_x c'_s$, so $c'_s=\lambda_s c_s$ and $\lambda_{xs}=\lambda_x\lambda_s$ for $s\in\supp(e)$. Each $g\in K$ is a positive word in the support, with the empty word allowed. Iterating gives $\lambda_{xg}=\lambda_x\lambda_g$ by evaluating the product first at $x=1$. Thus $\lambda$ is a character. Conversely a character carrying $e$ to $e'$ intertwines the compressions. This proves the parametrization.
+\end{proof}
+
+\section{Counterexamples}
+For $H=kG$, Construction~2.6 of \cite{BHSV} uses a subcentral idempotent $e$. With $K=\langle\supp(e)\rangle$, subcentrality makes $e$ central in $kK$ \cite[\S4.1]{BHSV}. Its comodule from a coset $rK$ has underlying space $kK e$ after removing $r$. The coefficient of $rx$ in the partial coaction is obtained by taking the degree-$x$ coefficient and multiplying by $e$ (cf.\ \cite[(27)]{BHSV}). This is the construction of Theorem~\ref{thmA} with $\alpha=1$.
+
+\begin{corA}
+Whenever a subgroup has a nontrivial class $[\alpha]$ with a nonzero central idempotent of generating support, the corresponding simple partial comodule lies outside Construction~2.6. In characteristic zero, $A_4$ gives such examples of dimensions $4$ and $8$. In particular Conjecture~B of \cite{BHSV} and Conjecture~4.1.18 of \cite{H} are false.
+\end{corA}
+
+\begin{proof}
+The exclusion follows from the isomorphism invariant $[\alpha]$. For the examples work over $\C$, and write $A_4=V_4\rtimes C_3$. Take the central extension $Q_8\rtimes C_3\simeq \mathrm{SL}(2,3)$, where the generator $t$ cyclically permutes the quaternion axes. Choose lifts of the two commuting generators of $V_4$ to $i,j\in Q_8$. Their commutator is $-1$, so the cocycle of the central character $-1\mapsto-1$ is nontrivial: on an abelian subgroup a coboundary has trivial commutator pairing. In the twisted algebra the $V_4$ part is the quaternion algebra, split as $\Mat_2(\C)$. The action of $t$ is conjugation by $q=(-1+i+j+ij)/2$ with $q^3=1$, choosing the generator that cycles the axes in the direction induced by $q$. Thus $v=q^{-1}u_t$ commutes with the quaternion algebra and with $u_t$, and $v^3=1$. The algebra is $\Mat_2(\C)\otimes\C[C_3]$, using $v$ as generator of the second factor. The central idempotents $e=(1+v+v^2)/3$ and $1-e$ have ranks $4$ and $8$. The coefficients of $q^{-1}$ in the quaternion basis are all nonzero, so the support of each idempotent includes the entire coset $V_4t$, which generates $A_4$. The theorem supplies both examples. The appendix gives rational matrices for dimension $4$, and the companion files supply both rational realizations.
+\end{proof}
+
+\begin{example}[$S_4$]
+The two cosets of $A_4$ in $S_4$ give two copies of each of the preceding dimensions. For full support take the binary octahedral extension, obtained by lifting the rotational symmetry group of the cube along $\mathrm{SU}(2)\to\mathrm{SO}(3)$. Its defining spin representation is irreducible of dimension $2$: the lifts of the diagonal half-turns about orthogonal axes in the normal $V_4$ anticommute, and admit no common invariant line. The same commutator proves the cocycle is nontrivial. For the associated primitive central idempotent $e$ in $\C^\alpha S_4$, the coefficient of $u_g$ is $(2/24)\operatorname{tr}(\rho(u_g^{-1}))$, by the central character formula on the cover. Lifts of rotations through angles $2\pi/3$ and $\pi/2$ have nonzero trace and project to $3$-cycles and $4$-cycles. All these coefficients are also nonzero for $1-e$. The $3$-cycles generate $A_4$ and a $4$-cycle is odd, so both supports generate $S_4$. The ranks are $4$ and $20$.
+\end{example}
+
+\begin{example}[Generalized dihedral group of order $18$]
+Put $N=\F_3^2$ and $G=N\rtimes C_2$, with inversion on $N$. For a primitive cube root $\zeta$, set
+\[
+ \alpha((x,\epsilon),(y,\delta))=\zeta^{\,x_2(-1)^\epsilon y_1}.
+\]
+Bilinearity of $B(x,y)=x_2y_1$ and its invariance under simultaneous inversion give the cocycle identity: for a third element $(z,\eta)$, both exponents are $B(x,(-1)^\epsilon y)+B(x,(-1)^{\epsilon+\delta}z)+B(y,(-1)^\delta z)$. On $N$ the commutator pairing is nontrivial and distinguishes $\alpha$ from $\alpha^{-1}$. The algebra $k^\alpha N$ is $\Mat_3(k)$ over any field containing $\zeta$ of characteristic prime to $6$. Indeed, on the basis indexed by $\F_3$, set $S e_j=e_{j+1}$ and $D e_j=\zeta^j e_j$; the nine $S^aD^b$ are independent by the three-point Fourier matrix, and their multiplication has the displayed factor on $N$. Inversion is implemented by $J e_j=e_{-j}$. For the lift $u_t$ of the involution, $v=J^{-1}u_t$ is central with $v^2=1$. The idempotents $(1\pm v)/2$ have rank $9$ in the direct product of two copies of $\Mat_3(k)$. The trace of $J(S^aD^b)^{-1}$ is a single nonzero summand, since the underlying permutation has exactly one fixed point. Trace orthogonality of the nine Weyl matrices against their inverses gives nonzero coefficients for all of them in $J$. Consequently the support includes all of $Nt$, which generates $G$. The sign character exchanges the two idempotents for a fixed twist. The inverse twist gives a second isomorphism class of dimension $9$. The supplied matrices use two finite fields containing $\zeta$.
+\end{example}
+
+
+\section{The universal partial representation algebra}
+\renewcommand{\thetheorem}{B}
+\begin{theorem}\label{thmB}
+Let $k$ be any field in which $|G|$ is invertible. Then $(k^G)_{\mathrm{par}}$ is finite-dimensional and semisimple. If $k$ is algebraically closed it is the product of the matrix algebras $\Mat_{d(e)}(k)$ indexed by Theorem~\ref{thmA}. Over any $k$ as above its dimension is
+\[
+ \sum_{K,[\alpha],[e]} [G:K]\,d(e)^2,
+\]
+where the parameters on the right are taken over an algebraic closure of $k$, with one term per character orbit and without the coset parameter.
+\end{theorem}
+
+We first work over an algebraically closed field with $|G|$ invertible. Introduce the unital $G$-graded algebra $B$ generated by $Z_g$ of degree $g$, with relations
+\begin{equation}\label{Brel}
+ Z_aZ_b=Z_b Z_{b^{-1}ab},\qquad
+ \sum_{ab=g} Z_aZ_b=Z_g .
+\end{equation}
+The second relation makes $E=\sum_gZ_g$ idempotent. Summing the first over $a$ shows centrality. We do not impose $E=1$.
+
+\begin{lemma}\label{graded}
+A finite-dimensional unital $G$-graded algebra $C$ whose identity component is central and which is generated by the homogeneous components of a central idempotent $F$ and by $1$ is a graded product of twisted group algebras $k^\alpha K$ for $K\le G$.
+\end{lemma}
+\begin{proof}
+The primitive idempotents of the commutative identity component are central in $C$, so they split $C$ into graded factors. Work in one factor with local identity component $C_1$, maximal ideal $\mathfrak m$ and residue field $k$. The inverse of a homogeneous unit of degree $a$ is homogeneous of degree $a^{-1}$, by decomposing the equation for the inverse by degrees. Nonunits of the same degree are closed under addition: if their sum were a unit, multiplying by its inverse would give two nonunits in the local algebra $C_1$ summing to $1$. A product with a nonunit cannot be a unit in a finite-dimensional algebra, because a one-sided inverse is two-sided. Hence the homogeneous nonunits span a graded ideal $J$ with $J_1=\mathfrak m$. It is nilpotent: if $\mathfrak m^q=0$, a product of $q|G|$ homogeneous factors in $J$ has $q+1$ prefixes (possibly including the empty prefix) of the same degree. The $q$ successive intervening subproducts have degree $1$ and lie in $\mathfrak m$, so their product vanishes.
+
+The degrees containing a unit form a subgroup $K$. Choose a unit $v_a$ in each such degree, with $v_1=1$. We have $C_a=C_1v_a$ for $a\in K$, and all other components lie in $J$. The quotient is $C/J=k^\alpha K$ for the scalar factors $\alpha$ obtained by reducing $v_av_b=c(a,b)v_{ab}$ modulo $\mathfrak m$. Here $c$ is a cocycle in the central group $C_1^\times$. Its ratio $d=c/\alpha$ is a cocycle valued in $1+\mathfrak m$. If $n=|K|$ and $D(a)=\prod_{t\in K}d(a,t)$, multiplying the cocycle identity over $t$ gives
+\[
+ d(a,b)^n=D(a)D(b)D(ab)^{-1}.
+\]
+The $n$th power is bijective on $1+\mathfrak m$, since it induces multiplication by $n$ on every successive additive quotient $\mathfrak m^i/\mathfrak m^{i+1}$ of the finite filtration. The unique $n$th roots $\eta(a)$ of $D(a)$ therefore satisfy $d(a,b)=\eta(a)\eta(b)\eta(ab)^{-1}$. Replacing $v_a$ by $\eta(a)^{-1}v_a$ gives the factor $\alpha$, and hence a graded section $\sigma$ of $C\to C/J$.
+
+Let $F'=\sigma(\bar F)$. The section identity gives $F'-F\in J$. The element $u=F'F+(1-F')(1-F)$ is congruent to $1$ modulo $J$, and is invertible. Since $F'u=uF$ and $F$ is central, $F'=F$. The section therefore contains $F$ and all its homogeneous components. They generate with $1$, so the section is surjective and $J=0$.
+\end{proof}
+
+\begin{lemma}\label{finite}
+The algebra $B$ is finite-dimensional. Its graded factors are indexed by $(K,[\alpha],[e])$ from Theorem~\ref{thmA}, with the coset omitted, and by one extra factor $k$ with $E$ mapping to $0$. On a factor $k^\alpha K$ the element $E$ maps to $e$ and each $Z_g$ maps to the component of $e$ of degree $g$.
+\end{lemma}
+\begin{proof}
+Moving a generator past a word conjugates its index by the degree of that word, by the first relation of \eqref{Brel}. Thus the degree-$1$ component is central. Let $o(b)$ be the order of $b$ and put $C_0=k[Z_b^{o(b)}:b\in G]$, an affine central subalgebra. Every word of length greater than $\sum_b(o(b)-1)$ has at least $o(b)$ occurrences of some $b$. Move the first $o(b)$ occurrences to the front, in order, using the first relation, which conjugates the crossed letters and leaves the unprocessed suffix unchanged. The leading power belongs to $C_0$, so induction on length shows that bounded words generate $B$ over $C_0$.
+
+For each maximal ideal $\mathfrak m_0$ of $C_0$, the graded fibre $B/\mathfrak m_0B$ is finite-dimensional, since the residue field is $k$, and nonzero by Nakayama's lemma applied to $B_{\mathfrak m_0}$, which contains the localization of $C_0$. Lemma~\ref{graded} gives a graded quotient $B\twoheadrightarrow k^\alpha K$. In any such quotient the images of the generators are the components of the central idempotent $e$ which is the image of $E$. These components generate if and only if $\supp(e)$ generates $K$, since homogeneous basis elements multiply to nonzero multiples of basis elements and positive words suffice. The case $e=0$ permits only the quotient $k$ in degree $1$. Conversely a central idempotent of generating support gives a surjection: $e^2=e$ proves the convolution relations by degree, and the degree-$ab$ part of $[e,c_bu_b]=0$ proves the conjugation relation (terms vanish if the corresponding coefficients are zero).
+
+There are only finitely many kernels of these graded surjections. Indeed, for $n=|K|$, applying the preceding product identity to a scalar cocycle shows that its $n$th power is a coboundary. Taking scalar $n$th roots of the cochain gives an equivalent cocycle in the finite group of $n$th roots of unity. For each of the finitely many cocycle classes, the centre of the fixed twisted algebra is finite-dimensional and has finitely many idempotents by its local decomposition. Each choice of target and idempotent specifies the images of the generators. A kernel arising from the fibre over $\mathfrak m_0$ contracts to $\mathfrak m_0$, so $C_0$ has finitely many maximal ideals. For each affine generator $z$ of $C_0$, the product of $z-\lambda$ over the values of $z$ at those ideals is in the nilradical by the Nullstellensatz. A power vanishes, giving a monic relation for $z$. Thus $C_0$ and then $B$ are finite-dimensional.
+
+Apply Lemma~\ref{graded} to $B$. Its factors are exactly the quotients just described: each twisted algebra is graded-simple because every nonzero homogeneous element is a unit, and the degree-$1$ factor idempotents of $B$ must map to $0$ or $1$ in any such quotient. Exactly one maps to $1$, so the quotient identifies that factor. Two surjections have the same kernel exactly when a graded isomorphism of their targets carries $e$ to $e'$. A graded isomorphism preserves $K$ and is of the form $u_a\mapsto\beta(a)u'_a$, so it changes cocycles by a coboundary and acts by a character when the representative is fixed. This proves the indexing.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thmB}]
+In $\paralg$ let $X_x=[p_x]$ and $\varepsilon_g=\sum_x X_xX_{g^{-1}x}$. The algebra $\Apar$ in \cite{ABV15} is generated by the $\varepsilon_g$. PR1 gives $\sum_g\varepsilon_g=1$. PR2 on $(p_x,p_b)$ and PR3 on $(p_b,p_{b^{-1}x})$ identify both sides of $X_x\varepsilon_b=\varepsilon_b X_{b^{-1}x}$ with $X_xX_{b^{-1}x}$. Moving $\varepsilon_b$ past both factors in $\varepsilon_a\varepsilon_b$ gives
+\[
+ \varepsilon_a\varepsilon_b
+ =\varepsilon_b\sum_x X_{b^{-1}x}X_{b^{-1}a^{-1}x}
+ =\varepsilon_b\varepsilon_{b^{-1}ab}.
+\]
+Moving it past the second factor only gives
+\[
+ \sum_{ab=g}\varepsilon_a\varepsilon_b
+ =\sum_{b,x}X_xX_{bg^{-1}x}\varepsilon_b
+ =\sum_{b,x}X_x\varepsilon_bX_{g^{-1}x}=\varepsilon_g.
+\]
+Therefore $Z_g\mapsto\varepsilon_g$ gives a surjection $q:BE=B/(E-1)\twoheadrightarrow\Apar$.
+
+By \cite[Theorem~4.8]{ABV15}, $\paralg\simeq\Apar\# H$ for the partial action $h\cdot a=\sum[h_1]a[S(h_2)]$ (the antipode of $k^G$ is invertible). The partial smash product is the span of $\sum a(h_1\cdot1)\otimes h_2$ in $\Apar\otimes H$ \cite[\S3, before Lemma~3.6]{ABV15}. For $H=k^G$ this is the image of
+\[
+ \Pi_A(a\otimes p_x)=\sum_g a\varepsilon_g\otimes p_{g^{-1}x}.
+\]
+Define $\Pi_B$ on $BE\otimes H$ by using $Z_gE$ instead. Both maps are idempotent by convolution, and $(q\otimes I)\Pi_B=\Pi_A(q\otimes I)$. In particular $\dim\paralg\le\rank\Pi_B$.
+
+By Lemma~\ref{finite}, the nonzero factors of $BE$ are $D=k^\alpha K e$. On one such factor $Z_gE$ maps to $c_gu_ge$, which acts by right multiplication by $c_gu_g$ on $D$ for $g\in K$. The map $\Pi_B$ preserves each $D\otimes k^{Kx}$ for the right cosets $Kx$. On one such summand use coordinates $a'\otimes' p_{bx}=a'u_b^{-1}\otimes p_{bx}$ for $b\in K$. The output at $cx$ comes from $g=bc^{-1}$, and its coefficient in the new coordinates uses $u_b^{-1}u_g u_c=\alpha(g,c)1$. Thus
+\[
+ \Pi_B(a'\otimes' p_{bx})=
+ \sum_{c\in K}c_{bc^{-1}}\alpha(bc^{-1},c)a'\otimes' p_{cx}.
+\]
+The coefficient is the $(b,c)$ entry of the matrix of left multiplication by $e$ in the basis $(u_c)$. The operator on the summand is therefore $I_D\otimes L_e^{\mathsf T}$ of rank $d(e)^2$, since $\im L_e=D$. Summing over right cosets and factors gives the upper bound in the theorem.
+
+The representations in Theorem~\ref{thmA} map $\paralg$ onto the corresponding matrix algebras and have distinct kernels: a matrix algebra has a unique simple module up to isomorphism. The kernels are maximal two-sided ideals and pairwise comaximal. For a finite list $I_1,\dots,I_m$, take $a_i\in I_i$ congruent to $1$ modulo $I_m$ for $i<m$. Their product belongs to $\bigcap_{i<m}I_i$ and is still congruent to $1$, so induction gives surjectivity onto the whole product. This gives the matching lower bound since there are $[G:K]$ left cosets for each triple. Equality forces the product map to be an isomorphism.
+
+For a general $k$, the presentation of $\paralg$ commutes with extension to an algebraic closure. Finiteness and dimension follow by faithful scalar extension. The Jacobson radical of the finite-dimensional algebra is nilpotent, and its extension is a nilpotent ideal of the split product, hence zero. This proves semisimplicity over $k$.
+\end{proof}
+
+
+\section{Computations}
+The companion file \path{checks/block_census.tsv} records the full block lists. In the tables, $d^{[m]}$ means $m$ blocks of size $d$. Dihedral and dicyclic subscripts give the group order. The census enumerates labelled subgroups, classes of cocycles and central idempotents, tests generating support, then takes character orbits and includes every left coset. In the larger nonabelian tests the rank bound was computed from the auxiliary graded algebra and the matrix quotients were compared by diagonal conjugacy of the projectors. The two routes share the subgroup tables, cocycles and central idempotents. The order-$16$ tests and the $S_4$ test used primes $7681$ and $12289$. The tests of orders $18$, $20$ and $21$ used $2521$ and $7561$. The abelian cases were cross-checked using Fourier duality and the partial group algebra decomposition \cite{DEP}.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+$G$ & $\dim (k^G)_{\mathrm{par}}$ & Centre & Block sizes \\
+\midrule
+$S_3$ & 51 & 21 & $1^{[18]},2^{[2]},5$\\
+$D_8$ & 180 & 46 & $1^{[35]},2^{[2]},3^{[7]},5,7$\\
+$Q_8$ & 180 & 34 & $1^{[19]},2^{[6]},3^{[7]},5,7$\\
+$D_{10}$ & 253 & 51 & $1^{[38]},2^{[4]},3^{[4]},4^{[2]},5^{[2]},9$\\
+$D_{12}$ & 886 & 116 & $1^{[74]},2^{[8]},3^{[16]},4^{[4]},5^{[8]},6^{[2]},7^{[2]},9,11$\\
+$\mathrm{Dic}_{12}$ & 886 & 83 & $1^{[34]},2^{[18]},3^{[16]},4^{[4]},5^{[4]},6^{[2]},7^{[2]},9,10,11$\\
+$A_4$ & 446 & 74 & $1^{[50]},2^{[17]},3^{[3]},4,8,10,11$\\
+$C_2^3$ & 576 & 87 & $1^{[51]},3^{[21]},4^{[7]},5^{[7]},7$\\
+\bottomrule
+\end{tabular}
+\caption{Small-group block lists.}
+\label{small}
+\end{table}
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}lrr|lrr@{}}
+\toprule
+$G$ & Dimension & Centre & $G$ & Dimension & Centre \\
+\midrule
+$C_{16}$ & 278528 & 4176 & $D_{16}$ & 3216 & 228\\
+$C_4^2$ & 278528 & 4332 & $\mathrm{SD}_{16}$ & 3216 & 204\\
+$C_2^2\rtimes C_4$ & 11264 & 438 & $Q_{16}$ & 3216 & 180\\
+$C_4\rtimes C_4$ & 11264 & 390 & $C_4\times C_2^2$ & 278528 & 4542\\
+$C_8\times C_2$ & 278528 & 4296 & $C_2\times D_8$ & 11264 & 510\\
+$M_{16}$ & 11264 & 354 & $C_2\times Q_8$ & 11264 & 414\\
+$C_2^4$ & 278528 & 5010 & Pauli group & 11264 & 438\\
+\bottomrule
+\end{tabular}
+\caption{The fourteen groups of order $16$. No twisted block occurs in this census.}
+\end{table}
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+$G$ & Untwisted sum & Dimension & Centre & Twisted blocks\\
+\midrule
+$D_{18}$ & 4427 & 4427 & 257 & ---\\
+$C_3\times S_3$ & 10464 & 10464 & 362 & ---\\
+$C_3^2\rtimes C_2$ (inversion) & 5129 & 5291 & 345 & $9^{[2]}$\\
+$\mathrm{Dic}_{20}$ & 11582 & 11582 & 375 & ---\\
+$C_5\rtimes C_4$ (faithful) & 1844 & 1844 & 183 & ---\\
+$D_{20}$ & 11582 & 11582 & 462 & ---\\
+$C_7\rtimes C_3$ (nontrivial) & 2221 & 2221 & 181 & ---\\
+$S_4$ & 4512 & 5088 & 392 & $4^{[3]},8^{[2]},20$\\
+\bottomrule
+\end{tabular}
+\caption{Larger examples. The untwisted sum counts only the blocks of Construction~2.6.}
+\end{table}
+
+\section{Verification and status}
+\begin{enumerate}
+\sloppy
+\item The rational $A_4$ matrices of dimensions $4$ and $8$ have Lean~4/Mathlib certificates in \path{lean/A4_contre_exemple_dim4.lean} and \path{lean/A4_contre_exemple_dim8.lean}. They check the group tables, the denominator-cleared partial representation identities, and expressions for multiples of the matrix units in the algebra generated by words. The main finite calculations use \texttt{decide +kernel}. The axiom audit reports only \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The matrix-unit certificates imply absolute simplicity over $\Q$ after dividing by the indicated nonzero integers.
+\item Exclusion from Construction~2.6 is a paper argument. For $A_4$ one can also check it independently of Theorem~A: the subgroups are of types $1,C_2,C_3,V_4,A_4$. For a central idempotent in $kK$ over $\C$, the dimension of $kK e$ is a sum of squares of selected irreducible degrees. In $A_4$ the degrees are $1,1,1,3$, so neither $4$ nor $8$ is possible there. The only remaining way to obtain $4$ is to take $K=V_4$ and $e=1$, whose support generates the trivial subgroup. Thus the certified matrices yield the counterexamples independently of the classification. The Lean files verify the matrix identities and generation.
+\item Theorems A and B were developed and proved with AI systems. Two independent AI reviews of the proofs found no error and identified points requiring clarification. Those points were addressed in the proofs presented here. The theorems have received no human expert review. Corrections and comments are welcome.
+\item Direct noncommutative Gr\"obner calculations with upper and lower dimension certificates were run for $k^{S_3}$, $k^{D_8}$, $k^{Q_8}$ and $k^{D_{10}}$ in finite characteristic. Other totals in the census are reported via Theorem~B. The matrix certificates in the companion deposit test individual simple modules. They give no upper bound on the dimension of the universal algebra.
+\end{enumerate}
+The conjectures and the construction are credited to their published sources \cite{ABV19,BHSV,H}. The companion deposit contains the rational dimension-$8$ matrices, the other explicit examples, and reproduction instructions.
+
+\appendix
+\section{Rational matrices for the dimension-four example}
+We use one-line permutations on $\{0,1,2,3\}$, with composition from right to left. Below $M_g=A_g/18$, where the integer matrices $A_g$ are in the order of \texttt{A4\_simple4\_Q.json}. The same order and scale are used in the Lean certificate.
+
+\[
+A_{0123}=\begin{pmatrix}0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 3 & -3 \\ 0 & 0 & -3 & 3\end{pmatrix}\qquad A_{1203}=\begin{pmatrix}0 & -1 & 0 & -1 \\ 0 & 3 & 0 & 3 \\ 0 & 0 & 0 & 0 \\ 0 & 3 & 0 & 3\end{pmatrix}.
+\]
+\[
+A_{1032}=\begin{pmatrix}0 & 0 & 0 & 0 \\ 18 & 6 & 3 & 3 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0\end{pmatrix}\qquad A_{2013}=\begin{pmatrix}0 & -1 & -1 & 0 \\ 0 & 3 & 3 & 0 \\ 0 & 3 & 3 & 0 \\ 0 & 0 & 0 & 0\end{pmatrix}.
+\]
+\[
+A_{2130}=\begin{pmatrix}0 & 0 & 0 & 0 \\ 0 & 3 & 0 & -3 \\ 0 & 0 & 0 & 0 \\ 0 & -3 & 0 & 3\end{pmatrix}\qquad A_{0312}=\begin{pmatrix}0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 18 & 3 & 6 & 3 \\ 0 & 0 & 0 & 0\end{pmatrix}.
+\]
+\[
+A_{0231}=\begin{pmatrix}0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 18 & 3 & 3 & 6\end{pmatrix}\qquad A_{1320}=\begin{pmatrix}6 & 1 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ -18 & -3 & -3 & 0\end{pmatrix}.
+\]
+\[
+A_{3102}=\begin{pmatrix}0 & 0 & 0 & 0 \\ 0 & 3 & -3 & 0 \\ 0 & -3 & 3 & 0 \\ 0 & 0 & 0 & 0\end{pmatrix}\qquad A_{3021}=\begin{pmatrix}6 & 1 & 0 & 1 \\ 0 & 0 & 0 & 0 \\ -18 & -3 & 0 & -3 \\ 0 & 0 & 0 & 0\end{pmatrix}.
+\]
+\[
+A_{2301}=\begin{pmatrix}0 & 0 & -1 & -1 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 3 & 3 \\ 0 & 0 & 3 & 3\end{pmatrix}\qquad A_{3210}=\begin{pmatrix}6 & 0 & 1 & 1 \\ -18 & 0 & -3 & -3 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0\end{pmatrix}.
+\]
+
+\begin{thebibliography}{9}
+\bibitem{ABV15} M. M. S. Alves, E. Batista and J. Vercruysse,
+\emph{Partial representations of Hopf algebras},
+J. Algebra \textbf{426} (2015), 137--187.
+\href{https://doi.org/10.1016/j.jalgebra.2014.12.011}{doi:10.1016/j.jalgebra.2014.12.011}.
+
+\bibitem{ABV19} M. M. S. Alves, E. Batista and J. Vercruysse,
+\emph{Dilations of partial representations of Hopf algebras},
+J. London Math. Soc. (2) \textbf{100} (2019), 273--300.
+\href{https://doi.org/10.1112/jlms.12213}{doi:10.1112/jlms.12213}.
+
+\bibitem{BHSV} E. Batista, W. Hautekiet, P. Saracco and J. Vercruysse,
+\emph{Towards a classification of simple partial comodules of Hopf algebras},
+J. Algebra \textbf{664} (2025), 312--347.
+\href{https://doi.org/10.1016/j.jalgebra.2024.10.005}{doi:10.1016/j.jalgebra.2024.10.005}.
+
+\bibitem{DEP} M. Dokuchaev, R. Exel and P. Piccione,
+\emph{Partial representations and partial group algebras},
+J. Algebra \textbf{226} (2000), 505--532.
+\href{https://doi.org/10.1006/jabr.1999.8204}{doi:10.1006/jabr.1999.8204}.
+
+\bibitem{H} W. Hautekiet, \emph{Partial modules and comodules of Hopf algebras},
+PhD thesis, Universit\'e libre de Bruxelles, 2025.
+\end{thebibliography}
+\end{document}

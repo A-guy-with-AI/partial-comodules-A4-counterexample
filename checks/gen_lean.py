@@ -1,8 +1,8 @@
-"""Generateur (Claude) du certificat Lean pour un module partiel simple de kA4*."""
+"""Generator of the Lean certificate for a simple partial module of kA4* (written by Claude)."""
 import json, sys
 from fractions import Fraction as F
 from math import lcm
-sys.path.insert(0, "/home/claude/hopf")
+import os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "code"))
 import hpar
 
 src, dim_name, out = sys.argv[1], sys.argv[2], sys.argv[3]

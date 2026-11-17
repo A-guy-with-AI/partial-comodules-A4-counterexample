@@ -1,37 +1,32 @@
-# Twisted group algebras and simple partial comodules
+# Twisted group algebras and simple partial comodules of finite group algebras
 
-**Author:** A-guy-with-AI
+**Author:** A-guy-with-AI · **Paper:** [`paper.pdf`](paper.pdf) (12 pages) · **Status:** preprint, not peer reviewed
 
-- The note studies finite-dimensional simple partial comodules of finite group algebras.
-- Finite duality makes these partial modules for the dual Hopf algebra.
-- Theorem A parametrizes the simples by cosets, cocycles and central idempotents modulo characters.
-- Construction 2.6 of Batista, Hautekiet, Saracco and Vercruysse gives the untwisted part.
-- The binary tetrahedral cover of $A_4$ gives two missing simples, of dimensions 4 and 8.
-- Both $A_4$ examples have rational matrices and Lean 4 / Mathlib certificates.
-- The note also gives examples for $S_4$ and the generalized dihedral group of order 18.
-- Theorem B gives the dimension and matrix blocks over an algebraic closure in characteristic prime to the group order.
-- The tables distinguish direct dimension certificates, structural calculations and tests of individual modules.
-- The proofs have been reviewed by two AI systems and have had no human expert review.
+## Main results
 
-## Results and evidence
+1. **Counterexample.** Conjecture B of Batista–Hautekiet–Saracco–Vercruysse [1] (also Conjecture 4.1.18 in [3]) is false. It predicts that every finite-dimensional simple partial comodule of a Hopf algebra comes from their Construction 2.6. For the group algebra of the alternating group A₄ there are simple partial comodules of dimensions **4 and 8** that do not arise this way. Both are given by explicit rational matrices and are **certified in Lean 4 / Mathlib**.
+2. **Classification (Theorem A).** Over an algebraically closed field, in any characteristic, the finite-dimensional simple partial comodules of a finite group algebra kG are classified by a coset, a 2-cocycle class and a central idempotent of a **twisted** group algebra. The untwisted case is exactly Construction 2.6. For A₄ the missing simples come from the binary tetrahedral cover (quaternions).
+3. **Semisimplicity (Theorem B).** If char k does not divide |G|, the universal partial representation algebra (k^G)_par of the dual group algebra is finite-dimensional and semisimple, with an explicit dimension formula. This is the case H = k^G of Conjecture 2.8 of Alves–Batista–Vercruysse [2].
 
-| Result | Dimension or block sizes | Status |
-|---|---|---|
-| $A_4$ counterexamples | 4 and 8 | Rational PR1–PR5 and matrix-unit certificates in Lean. Exclusion from Construction 2.6 is proved in the note. |
-| $S_4$ explicit examples | 4, 8, 4 and 20 | Rational Python matrix checks. A second $A_4$ coset gives another 4 and 8 by translation. |
-| $(C_3\times C_3)\rtimes C_2$, inversion action | Two classes of dimension 9 | Paper construction. Python checks for both classes over each of `F_2521` and `F_7561`. |
-| Theorem A | Classification | Proof in the note. |
-| Theorem B | Dimension, matrix blocks and semisimplicity in the stated characteristic | Proof in the note. |
-| Direct Gröbner dimensions for $S_3,D_8,Q_8,D_{10}$ | 51, 180, 180, 253 | Prior upper and lower dimension certificates in finite characteristic. The Gröbner engine and traces are outside this bundle. |
-| Remaining dimension census | See the paper and `checks/block_census.tsv` | Reported via Theorem B. The included module checker verifies individual representations. |
+Further examples are given for S₄ and for the generalized dihedral group (C₃×C₃)⋊C₂ of order 18.
 
-The order-18 certificates are modular. Over an algebraic closure of `Q`, complex conjugation interchanges the two nontrivial cocycle classes of the examples, so neither individual simple descends to `Q`. The note's proof explains the two classes using a primitive cube root of unity.
+## What is verified, and how
 
-In the TSV, each block list uses `size:multiplicity`. The order-16 labels `G16_n` mean SmallGroups identifiers `(16,n)`. The primes column records the census fields, which can differ from the fields used for the earlier direct Gröbner checks.
+| Result | Status |
+|---|---|
+| A₄ simple modules of dimensions 4 and 8 | **Lean 4 / Mathlib certificate** (`lean/`): group table, all 577 partial-representation identities, generation of the full matrix algebra (absolute simplicity). Standard axioms only. |
+| These modules are not from Construction 2.6 | Short argument on paper (Section 7 of the paper): for A₄, that construction only yields dimensions Σχ(1)² ∈ {1, 2, 3, 4, 9, 10, 11, 12}, and 4 only in an excluded case. |
+| Examples for S₄ and order 18 | Exact rational (S₄) or modular (order 18) matrix checks with `checks/verif_module.py`. |
+| Theorems A and B | Proofs in the paper. They were developed and reviewed by AI systems (two independent reviews, no error found) and have **not been reviewed by a human expert**. |
+| Dimensions of (k^G)_par | Direct Gröbner-basis certificates (upper and lower bound) for S₃, D₈, Q₈, D₁₀: 51, 180, 180, 253. Other values in `checks/block_census.tsv` are computed via Theorem B. |
 
-## Reproduce the matrix checks
+The counterexample (result 1) does not depend on Theorems A and B.
 
-From the directory containing this README, with Python 3.9 or later:
+**Comments, corrections and expert review are very welcome. Please open an [issue](../../issues).**
+
+## Reproduce
+
+**Matrix checks** (Python ≥ 3.9, no extra packages), from the repository root:
 
 ```sh
 for f in checks/modules/*.json; do
@@ -39,40 +34,53 @@ for f in checks/modules/*.json; do
 done
 ```
 
-Each run should report zero failed relations and `ABSOLUMENT SIMPLE`, with the generated algebra of dimension $d^2$. The verifier, JSONs, generator and Lean sources are byte-for-byte copies. The verifier already imports the sibling `code/hpar.py` helper, which contains the required group and relation routines and the order-18 group registration. The verifier needed no import edit. To regenerate the dimension-four matrix proof body, use the local helper via `PYTHONPATH`:
+Each run reports `0 en echec` (zero failed relations) and `ABSOLUMENT SIMPLE` (absolutely simple), with a generated algebra of dimension d².
 
-```sh
-PYTHONPATH="$PWD/code" python3 -B checks/gen_lean.py \
-  checks/modules/A4_simple4_Q.json Dim4 /tmp/A4_regenerated_dim4.lean
-```
-
-The distributed Lean certificates include axiom-reporting commands. The legacy generator emits the proof body and also prepends an old absolute import path. The command assumes that path does not supply a competing `hpar` module.
-
-## Reproduce the Lean checks
-
-Use Lean `v4.36.0-rc2` and Mathlib commit `9d581dfff2e41de989072ea63abf3daf69311520` (tag `v4.36.0-rc2`). From this bundle's root, the following makes a fresh, separate checkout:
+**Lean certificates.** Lean `v4.36.0-rc2`, Mathlib commit `9d581dfff2e41de989072ea63abf3daf69311520`:
 
 ```sh
 bundle_dir="$PWD"
 mathlib_dir=$(mktemp -d)
-git clone --depth 1 --branch v4.36.0-rc2 \
-  https://github.com/leanprover-community/mathlib4.git "$mathlib_dir/mathlib4"
-cd "$mathlib_dir/mathlib4" || exit 1
+git clone https://github.com/leanprover-community/mathlib4.git "$mathlib_dir/mathlib4"
+cd "$mathlib_dir/mathlib4" && git checkout 9d581dfff2e41de989072ea63abf3daf69311520
 lake exe cache get
 lake env lean "$bundle_dir/lean/A4_contre_exemple_dim4.lean"
 lake env lean "$bundle_dir/lean/A4_contre_exemple_dim8.lean"
 ```
 
-Both runs should succeed and print only the standard axiom dependencies `propext`, `Classical.choice` and `Quot.sound`. The main finite calculations use `decide +kernel`.
+Both files should compile and report only `propext`, `Classical.choice` and `Quot.sound`. The finite computations use `decide +kernel`.
 
-## Build and check the bundle
-
-From this bundle's root:
+**Regenerate a Lean certificate** from its matrices:
 
 ```sh
-tectonic paper.tex
-shasum -a 256 -c SHA256SUMS.txt
+python3 -B checks/gen_lean.py checks/modules/A4_simple4_Q.json Dim4 /tmp/A4_dim4.lean
 ```
 
-The checksum manifest covers the shipped files except itself. Run the integrity check before rebuilding if the local TeX installation may generate different PDF metadata. Human expert review of the paper proofs is welcome.
+**Integrity:** `shasum -a 256 -c SHA256SUMS.txt`
 
+## Repository layout
+
+- `paper.tex`, `paper.pdf`: the note.
+- `lean/`: Lean 4 certificates for the two A₄ modules.
+- `checks/verif_module.py`: independent exact checker (partial-representation identities and absolute simplicity).
+- `checks/modules/`: explicit matrices (JSON).
+- `checks/gen_lean.py`: generator of the Lean certificates.
+- `checks/block_census.tsv`: block sizes for all groups tested.
+- `code/hpar.py`: group tables and relations used by the checker.
+
+Some file names and program messages are in French.
+
+## References
+
+1. E. Batista, W. Hautekiet, P. Saracco, J. Vercruysse, *Towards a classification of simple partial comodules of Hopf algebras*, J. Algebra 664 (2025) 312–347. [doi:10.1016/j.jalgebra.2024.10.005](https://doi.org/10.1016/j.jalgebra.2024.10.005) · [arXiv:2310.12728](https://arxiv.org/abs/2310.12728)
+2. M. M. S. Alves, E. Batista, J. Vercruysse, *Dilations of partial representations of Hopf algebras*, J. London Math. Soc. (2) 100 (2019). [doi:10.1112/jlms.12213](https://doi.org/10.1112/jlms.12213) · [arXiv:1802.03037](https://arxiv.org/abs/1802.03037)
+3. W. Hautekiet, *Partial modules and comodules of Hopf algebras*, PhD thesis, Université libre de Bruxelles, 2025. [DI-fusion](https://difusion.ulb.ac.be/vufind/Record/ULB-DIPOT:oai:dipot.ulb.ac.be:2013/390035/Details)
+4. M. M. S. Alves, E. Batista, J. Vercruysse, *Partial representations of Hopf algebras*, J. Algebra 426 (2015) 137–187. [arXiv:1309.1659](https://arxiv.org/abs/1309.1659)
+
+## How to cite
+
+See [`CITATION.cff`](CITATION.cff), or use the "Cite this repository" button on GitHub.
+
+## License
+
+Code (`checks/`, `code/`, `lean/`): [MIT](LICENSE). Paper (`paper.tex`, `paper.pdf`) and data (`checks/modules/`, `checks/block_census.tsv`): [CC BY 4.0](LICENSE-paper.md).

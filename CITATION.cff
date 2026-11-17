@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use these results, please cite them as below."
+title: "Twisted group algebras and simple partial comodules of finite group algebras: a counterexample and a classification"
+authors:
+  - alias: "A-guy-with-AI"
+date-released: 2026-11-11
+version: "1.0"
+repository-code: "https://github.com/A-guy-with-AI/partial-comodules-A4-counterexample"
+license: MIT
+keywords:
+  - partial comodules
+  - partial representations
+  - Hopf algebras
+  - twisted group algebras
+  - counterexample
+  - Lean 4
+abstract: >-
+  Counterexample (A4, dimensions 4 and 8, certified in Lean 4) to Conjecture B of
+  Batista-Hautekiet-Saracco-Vercruysse; classification of finite-dimensional simple
+  partial comodules of finite group algebras via twisted group algebras; finite
+  dimension and semisimplicity of the partial representation algebra of dual group
+  algebras in characteristic prime to the group order. Proofs reviewed by AI systems,
+  not yet by a human expert.
